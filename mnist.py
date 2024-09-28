@@ -18,7 +18,7 @@ app = Flask(__name__)
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-model = load_model('./model.keras')#学習済みモデルをロード
+model = load_model('./model.h5')#学習済みモデルをロード
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -51,4 +51,5 @@ def upload_file():
 
 
 if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 8080))
     app.run(host ='0.0.0.0',port = port)
